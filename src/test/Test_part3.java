@@ -8,5 +8,7 @@ public class Test_part3 {
 		B b = new B();
 		b.foo(2);
 		b.foo(2);
+		b.foo(3);
+		b.foo(1);
 	}
 }

@@ -24,42 +24,31 @@ public aspect Aspect_part_threee_1 {
 		//System.out.println(sig_hist + input_value + return_value);
 		
 		if(histmap.get(sig_hist) == null){
-			histmap.put(sig_hist, new HashMap<Integer, int[]>());
-			if(histmap.get(sig_hist).get(input_value) == null){
-				histmap.put(sig_hist, new HashMap<Integer, int[]>());
-				histmap.get(sig_hist).put(input_value, new int[2]);
-				
-				histmap.get(sig_hist).get(input_value)[0] = 1;
-				histmap.get(sig_hist).get(input_value)[1] = 0;
-			}
-		}
+			histmap.put(sig_hist, new HashMap<Integer, int[]>());}
 			
-		else{
 			if(histmap.get(sig_hist).get(input_value) == null){
 				
-				histmap.put(sig_hist, new HashMap<Integer, int[]>());
 				histmap.get(sig_hist).put(input_value, new int[2]);
 				
 				histmap.get(sig_hist).get(input_value)[0] = 1;
 				histmap.get(sig_hist).get(input_value)[1] = 0;
 			}
-			else{
+		else{
 				++ histmap.get(sig_hist).get(input_value)[0];
 			}
-		}
 		
 		
 		
 		
 //		if(histmap.get(sig_hist) == null){
 //			histmap.put(sig_hist, new HashMap<Integer, int[]>());
-//			if(histmap.get(sig_hist).get(return_value) == null){
+			if(histmap.get(sig_hist).get(return_value) == null){
 //				histmap.put(sig_hist, new HashMap<Integer, int[]>());
-//				histmap.get(sig_hist).put(return_value, new int[2]);
-//				
-//				histmap.get(sig_hist).get(return_value)[0] = 0;
-//				histmap.get(sig_hist).get(return_value)[1] = 1;
-//			}
+				histmap.get(sig_hist).put(return_value, new int[2]);
+				
+				histmap.get(sig_hist).get(return_value)[0] = 0;
+				histmap.get(sig_hist).get(return_value)[1] = 1;
+			}
 //		}
 //			
 //		else{
@@ -67,19 +56,12 @@ public aspect Aspect_part_threee_1 {
 //				histmap.put(sig_hist, new HashMap<Integer, int[]>());
 //				histmap.get(sig_hist).put(return_value, new int[2]);
 //				
-//				//temp = histmap.get(sig_hist).get(return_value);
-//				
-//				histmap.get(sig_hist).get(return_value)[0] = 2;
+//				histmap.get(sig_hist).get(return_value)[0] = 0;
 //				histmap.get(sig_hist).get(return_value)[1] = 1;
-//				//System.out.println(histmap.get(sig_hist).get(return_value)[1]);
 //			}
-//			else{
-//				temp = histmap.get(sig_hist).get(return_value);
-//				temp[1] = temp[1] + 1;
-//				//System.out.println(temp[1]);
-//				//++ histmap.get(sig_hist).get(return_value)[1];
-//				histmap.get(sig_hist).put(return_value, temp);
-//			}
+			else{
+				++ histmap.get(sig_hist).get(return_value)[1];
+			}
 //		}
 		
 		
@@ -129,8 +111,8 @@ public aspect Aspect_part_threee_1 {
 				for(Integer v : values){
 					int it_fr = histmap.get(f).get(v)[0];
 					int rt_fr = histmap.get(f).get(v)[1];
-//					System.out.println(v);
-//					System.out.println(f);
+					System.out.println(v);
+					System.out.println(f);
 					System.out.println(it_fr);
 					System.out.println(rt_fr);
 				}
