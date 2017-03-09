@@ -68,13 +68,13 @@ public aspect Aspect_part_three_1 {
 						int rt_fr = histmap.get(f).get(v)[1];
 						
 						out_hist.println("Value:" + v);
-						out_hist.println("Input Frequency:" + it_fr);
-						out_hist.println("Return Frequency:" + rt_fr);
+						out_hist.println("Input Times:" + it_fr);
+						out_hist.println("Return Times:" + rt_fr);
 						out_hist.println("-----------------");
-						System.out.println(v);
-						System.out.println(f);
-						System.out.println(it_fr);
-						System.out.println(rt_fr);
+						System.out.println("Method:" + f);
+						System.out.println("Value:" + v);
+						System.out.println("Input Frequency:" + it_fr);
+						System.out.println("Return Frequency:" + rt_fr);
 				}
 			}catch(IOException e){
 				System.out.println("Error Message.");

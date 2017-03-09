@@ -31,8 +31,7 @@ public aspect Aspect_part_two {
 		
 		node = sig_node.getDeclaringTypeName() + "." + sig_node.getName() + "(int)";
 	
-		nodemap.put(node, null);
-		
+		nodemap.put(node, null);	
 	}
 	
 	after() returning(Object o) : calledge(){
@@ -48,7 +47,6 @@ public aspect Aspect_part_two {
 		System.out.println("Return normally:" + o);
 		
 		edgemap.put(edge, null);
-	
 	}
 	
 	after(): execution(public static * main(..)){
@@ -60,26 +58,22 @@ public aspect Aspect_part_two {
 			Set<String> keys = nodemap.keySet();
 			for(String n : keys){
 				System.out.println(n);
-				out_node.println(n);
-			}	
-				
-			}catch(IOException e){
-				System.out.println("Error Message.");
-			}
+				out_node.println(n);}
+
+		}catch(IOException e){
+			System.out.println("Error Message.");}
 		
 		try(FileWriter fw_edge = new FileWriter(edgefile, true);
 				BufferedWriter bw_edge = new BufferedWriter(fw_edge);
-				PrintWriter out_edge = new PrintWriter(bw_edge))
-			{
+				PrintWriter out_edge = new PrintWriter(bw_edge)){
+			
 			Set<String> keys = edgemap.keySet();
 			for(String n : keys){
 				System.out.println(n);
-				out_edge.println(n);
-			}	
+				out_edge.println(n);}	
 				
-			}catch(IOException e){
-				System.out.println("Error Message.");
+		}catch(IOException e){
+			System.out.println("Error Message.");
 			}
-		
 	}
 }

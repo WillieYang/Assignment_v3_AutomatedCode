@@ -45,7 +45,7 @@ public aspect Aspect_part_three_2 {
 			}
 		}		
 	after(): execution(public static * main(..)){
-		System.out.println("Normal_times:" + total_times);
+		System.out.println("Total_times:" + total_times);
 		System.out.println("Exception_times:" + exception_times);
 		
 		Set<String> failurekeys = failuremap.keySet();
@@ -61,7 +61,7 @@ public aspect Aspect_part_three_2 {
 				System.out.println("Failure fr:" + failure_fr);
 				System.out.println("tatal_times:" + total_ts);
 				System.out.println("fail_times:" + fail_ts);
-				out_fail.println("Method:" + f + "--" + "Failure Frequency:" + failure_fr);
+				out_fail.println("Method:" + f + "  " + "Failure Frequency:" + failure_fr);
 				}
 			}catch(IOException e){
 				System.out.println("Error Message.");}		
