@@ -19,6 +19,7 @@ public aspect Aspect_part_two {
 	public String edgefile = "./edge.csv";
 	HashMap<String, String> nodemap = new HashMap<String, String>();
 	HashMap<String, String> edgemap = new HashMap<String, String>();
+	
 
 	pointcut callnodes(): call(public int q2..*(int));
 	pointcut calledge(): call(public int q2..*(int))

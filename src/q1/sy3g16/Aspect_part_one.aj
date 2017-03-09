@@ -32,6 +32,7 @@ public aspect Aspect_part_one {
 	
 		nodemap.put(node, null);
 		
+		
 	}
 	
 	after(): calledge(){
@@ -45,11 +46,10 @@ public aspect Aspect_part_one {
 		edge = enclosing_node + "-->" + current_node;
 		
 		edgemap.put(edge, null);
-	
 	}
 	
 	after(): execution(public static * main(..)){
-		
+
 		try(FileWriter fw_node = new FileWriter(nodefile, true);
 				BufferedWriter bw_node = new BufferedWriter(fw_node);
 				PrintWriter out_node = new PrintWriter(bw_node))

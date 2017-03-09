@@ -1,6 +1,6 @@
-package q1;
+package q3;
 
-public class B {
+public class A {
 
 	public int foo(int a) throws Exception{
 		bar(2);
@@ -9,7 +9,11 @@ public class B {
 	
 	public int bar(int b) throws Exception{
 		
-		if(b==2){throw new Exception();}
+		if(b==2){
+			
+				throw new Exception();
+		}
+		
 		return baz(b);
 	}
 	
