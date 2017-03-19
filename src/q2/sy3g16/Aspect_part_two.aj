@@ -11,43 +11,51 @@ import org.aspectj.lang.Signature;
 
 public aspect Aspect_part_two {
 
-	public String node;
-	public String edge;
-	public String current_node;
-	public String enclosing_node;
-	public String nodefile = "./node.csv";
-	public String edgefile = "./edge.csv";
+	public String node; // The name of method being called.
+	public String edge; // The edge that between two nodes.
+	public String current_node; // Current invoked method.
+	public String enclosing_node; // Enclosing method.
+	public String nodefile = "./node.csv"; // CSV file to store the node being called.
+	public String edgefile = "./edge.csv"; // CSV file to store the edge between two nodes.
 	HashMap<String, String> nodemap = new HashMap<String, String>();
+	// A HashMap whose key is used to store the node.(in this case, use HashMap to avoid the duplicate nodes.)
 	HashMap<String, String> edgemap = new HashMap<String, String>();
-	
-
+	// A HashMap whose key is used to store the edge.(in this case, use HashMap to avoid the duplicate edges.)
 	pointcut callnodes(): call(public int q2..*(int));
+	// A point-cut to call the method whose modifier is public, return type is integer, and in the package of q2.
 	pointcut calledge(): call(public int q2..*(int))
-	&& withincode(public int q2..*(int));
+							&& withincode(public int q2..*(int));
+	// A point-cut to call the method within the a particular method.
 	
 	before() : callnodes(){
 		
 		Signature sig_node = thisJoinPointStaticPart.getSignature();
+		// The signature of current join point.
 		
 		node = sig_node.getDeclaringTypeName() + "." + sig_node.getName() + "(int)";
-	
-		nodemap.put(node, null);	
+		// The name of method being called.
+		nodemap.put(node, null);
+		// Put the node into a HashMap as a key.
 	}
 	
 	after() returning(Object o) : calledge(){
 		
 		Signature sig_current = thisJoinPointStaticPart.getSignature();
+		// The signature of current join point.
 		Signature sig_enclosing = thisEnclosingJoinPointStaticPart.getSignature();
-		
+		// The signature of enclosing method about the current join point.
 		current_node = sig_current.getDeclaringTypeName() + "." + sig_current.getName() + "(int)";
+		// The name of current node.
 		enclosing_node = sig_enclosing.getDeclaringTypeName() + "." + sig_enclosing.getName() + "(int)";
-		
+		// The name of enclosing node.
 		edge = enclosing_node + "-->" + current_node;
-		
+		// The edge between two methods.
 		System.out.println("Return normally:" + o);
-		
+		// If return normally, output this string.
 		edgemap.put(edge, null);
-	}
+		// Put the edge into a HashMap as a key.
+	} // This advice would place the edge into a HashMap if executed normally. 
+	 // However if throwing exception, the corresponding edge would not been put into HashMap.
 	
 	after(): execution(public static * main(..)){
 		
@@ -61,7 +69,8 @@ public aspect Aspect_part_two {
 				out_node.println(n);}
 
 		}catch(IOException e){
-			System.out.println("Error Message.");}
+			System.out.println("Error Message.");
+		} // Write the nodes stored in the HashMap into a .csv file. 
 		
 		try(FileWriter fw_edge = new FileWriter(edgefile, true);
 				BufferedWriter bw_edge = new BufferedWriter(fw_edge);
@@ -74,6 +83,6 @@ public aspect Aspect_part_two {
 				
 		}catch(IOException e){
 			System.out.println("Error Message.");
-			}
-	}
+		} // Write the edges stored in the HashMap into a .csv file.
+	} // This advice is to write the nodes and edges stored into the CSV files.
 }

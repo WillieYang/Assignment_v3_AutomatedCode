@@ -1,6 +1,6 @@
 package test;
 
-import s1.A;
+import q3.A;
 
 public class Test_part3_3 {
 
